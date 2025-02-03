@@ -1,0 +1,77 @@
+$link-font-size: 16px;
+$link-color-base: #333;
+$link-color-active: #da1e32;
+
+@function activeFontSize($base-size) {
+  @return $base-size + 2px;
+}
+
+@mixin button($font-size) {
+  color: #333;
+  font-size: $font-size;
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px 16px;
+  border: 1px solid #333;
+  text-decoration: none;
+}
+
+.lists {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+
+  li {
+    width: 25%;
+    text-align: center;
+
+    a {
+      @include button(14px);
+
+      &:hover {
+        color: $link-color-active;
+      }
+
+      &.active {
+        color: $link-color-active;
+        font-size: activeFontSize($link-font-size);
+      }
+    }
+  }
+}
+
+//マップ型変数breakpointsを定義
+$breakpoints: (
+  //キー　　値
+  "sp": "screen and (max-width: 767px)",
+  //767px以下（スマホ）用の表示
+  "pc": "screen and (min-width: 768px)" //768px以上（タブレット・PC）用の表示
+) !default;
+
+//メディアクエリ用のmixinを定義。デフォルト値はsp
+@mixin mq($breakpoint: sp) {
+  //map-get(マップ型変数, キー)で値を取得
+  @media #{map-get($breakpoints, $breakpoint)} {
+    //この中をカスタムできる
+    @content;
+  }
+}
+
+//使用例
+.header {
+  height: 100px; //ＰＣ用の表示
+
+  @include mq(sp) {
+    height: 60px; //スマホの時だけ高さを60pxに！
+  }
+}
+.footer {
+  height: 100px; //ＰＣ用の表示
+
+  @include mq(sp) {
+    height: 60px; //スマホの時だけ高さを60pxに！
+  }
+}
+/*このように @media screen and (width: 767px) { } を書かなくても、
+PC用のcssを書きながらスマホ用の表示を書き足すことができます！ */

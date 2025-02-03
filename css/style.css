@@ -1,0 +1,50 @@
+@charset "UTF-8";
+.lists {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.lists li {
+  width: 25%;
+  text-align: center;
+}
+.lists li a {
+  color: #333;
+  font-size: 14px;
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px 16px;
+  border: 1px solid #333;
+  text-decoration: none;
+}
+.lists li a:hover {
+  color: #da1e32;
+}
+.lists li a.active {
+  color: #da1e32;
+  font-size: 18px;
+}
+
+.header {
+  height: 100px;
+}
+@media screen and (max-width: 767px) {
+  .header {
+    height: 60px;
+  }
+}
+
+.footer {
+  height: 100px;
+}
+@media screen and (max-width: 767px) {
+  .footer {
+    height: 60px;
+  }
+}
+
+/*このように @media screen and (width: 767px) { } を書かなくても、
+PC用のcssを書きながらスマホ用の表示を書き足すことができます！ */
